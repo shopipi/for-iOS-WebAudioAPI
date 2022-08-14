@@ -13,13 +13,13 @@ const AudioTag =
 };
 ```
 
-2. Init Audio
+2. Init Audio.
 ```js
 WebAudioMasterLib.init({ tag: AudioTag.HAPPY_SOUND_MP3, src: 'res/audio/' + AudioTag.HAPPY_SOUND_MP3 });
 WebAudioMasterLib.init({ tag: AudioTag.BOMB_SE_MP3, src: 'res/audio/' + AudioTag.BOMB_SE_MP3 });
 ```
 
-3. Get ready to play Audio on User Interact Event
+3. Get ready to play Audio on User Interact Event.
 ```js
 $('.start-btn').on('touchend', function(e)
 {
