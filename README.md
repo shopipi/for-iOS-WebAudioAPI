@@ -21,7 +21,7 @@ $('button').on('touchstart', function()
   AudioObject.register('bomb', 'expl.mp3');
   AudioObject.register('bomb', 'expl.mp3');
   AudioObject.register('bomb', 'expl.mp3');
-})
+});
 ```
 
 2. 
