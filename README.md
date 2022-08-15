@@ -1,35 +1,40 @@
-# web-audio-master-lib
-- You can play Audio any timing when you want. Works on iOS Safari and other platforms.
+# for-iOS-WebAudioAPI
+- You can play Audio at SPECIFIC time when you want. Works on iOS Safari and other platforms.
 - iOS環境で任意のタイミングで音を鳴らすためのライブラリです。ほかのプラットフォームでも使用可能です。
 
 ### Usage
 
-1. Define Your Own Tag.
+1.
+- en: Register AudioObject, With Tag. (in user interact event.)
+- ja: タグを使用してAudioObjectを登録します。(ユーザーアクションイベント内で呼び出し）
 ```js
-const AudioTag =
+$('button').on('touchstart', function()
 {
-  HAPPY_SOUND_MP3 : 'HappySound.mp3',
-  BOMB_SE_MP3     : 'Bomb.mp3'
-};
+  // Register BGM
+  // BGMの登録（呼び出し一回のみ）
+  AudioObject.register(AudioTag.SKY_HIGH);
+
+  // Register SE
+  // 効果音の登録（オブジェクトを使いまわす数分だけ登録）
+  AudioObject.register('bomb', 'expl.mp3');
+  AudioObject.register('bomb', 'expl.mp3');
+  AudioObject.register('bomb', 'expl.mp3');
+  AudioObject.register('bomb', 'expl.mp3');
+  AudioObject.register('bomb', 'expl.mp3');
+})
 ```
 
-2. Init Audio.
+2. 
+- en: Play Sound Specific Time You WANT!
+- ja: 好きなタイミングで再生が可能！
 ```js
-WebAudioMasterLib.init({ tag: AudioTag.HAPPY_SOUND_MP3, src: 'res/audio/' + AudioTag.HAPPY_SOUND_MP3 });
-WebAudioMasterLib.init({ tag: AudioTag.BOMB_SE_MP3, src: 'res/audio/' + AudioTag.BOMB_SE_MP3 });
-```
+function startGame()
+{
+  AudioObject.getObjectByTag(AudioTag.SKY_HIGH).play();
+}
 
-3. Get ready to play Audio on User Interact Event.
-```js
-$('.start-btn').on('touchend', function(e)
+function onDead()
 {
-  WebAudioMasterLib.ready_to_play(AudioTag.HAPPY_SOUND_MP3);
-});
-```
-4. Play Audio When You WANT!
-```js
-function on_game_cleared()
-{
-  WebAudioMasterLib.play(AudioTag.HAPPY_SOUND_MP3);
+  AudioObject.getObjectByTag('bomb').play();
 }
 ```
